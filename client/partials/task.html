@@ -1,0 +1,31 @@
+<div ng-controller='taskController'>
+	<h2>Tasks</h2>
+	<input type="text" ng-model='filter_task'>
+	<table>
+		<thead>
+			<th>Task</th>
+			<th>Priority</th>
+			<th>Deadline</th>
+			<th>Created</th>
+			<th>Actions</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="task in tasks | filter: filter_task | orderBy: ['deadline', 'priority']">
+				<td>{{task.task}}</td>
+				<td>{{task.priority.priority}}</td>
+				<td>{{task.deadline | date: 'MMMM d yyyy'}}</td>
+				<td>{{task.created | date: 'MMMM d yyyy'}}</td>
+				<td><button ng-click='removeTask(task)'>Remove</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<h2>Add a New Task</h2>
+	<form>
+		Task: <input type="text" ng-model='task.task'>
+		Priority: <select ng-model='task.priority' ng-options='priority.priority for priority in priorities'>
+					  <option value="">Priority...</option>
+				  </select>
+		Deadline: <input type="date" ng-model='task.deadline'>
+		<button ng-click='addTask()'>Add Task</button>
+	</form>
+</div>
