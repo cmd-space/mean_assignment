@@ -51,14 +51,15 @@ myApp.controller('taskController', function($scope, taskFactory) {
 
 	$scope.addTask = function() {
 		$scope.task.created = new Date();
-		if($scope.task.priority === '1') {
+		if($scope.task.alert === '1') {
 			$scope.task.priority = 'LOW';
-		} else if($scope.task.priority === '2') {
+		} else if($scope.task.alert === '2') {
 			$scope.task.priority = 'MEDIUM';
 		} else {
 			$scope.task.priority = 'HIGH';
 		}
 		taskFactory.addTask($scope.task, function(data) {
+			console.log(data);
 			$scope.tasks = data;
 		});
 		$scope.task = {};

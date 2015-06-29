@@ -10,9 +10,9 @@
 			<th>Actions</th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="task in tasks | filter: filter_task | orderBy: ['deadline', 'priority']">
+			<tr ng-repeat="task in tasks | filter: filter_task | orderBy: ['deadline', '-alert']">
 				<td>{{task.task}}</td>
-				<td>{{task.priority.priority}}</td>
+				<td>{{task.priority}}</td>
 				<td>{{task.deadline | date: 'MMMM d yyyy'}}</td>
 				<td>{{task.created | date: 'MMMM d yyyy'}}</td>
 				<td><button ng-click='removeTask(task)'>Remove</button></td>
@@ -22,8 +22,11 @@
 	<h2>Add a New Task</h2>
 	<form>
 		Task: <input type="text" ng-model='task.task'>
-		Priority: <select ng-model='task.priority' ng-options='priority.priority for priority in priorities'>
+		Priority: <select ng-model='task.alert'>
 					  <option value="">Priority...</option>
+					  <option value="1">LOW</option>
+					  <option value="2">MEDIUM</option>
+					  <option value="3">HIGH</option>
 				  </select>
 		Deadline: <input type="date" ng-model='task.deadline'>
 		<button ng-click='addTask()'>Add Task</button>
