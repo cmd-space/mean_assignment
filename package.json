@@ -1,0 +1,6 @@
+{
+  "name": "black_belt_MEAN_v2",
+  "dependencies": {
+    "express": "~4.2.0"
+  }
+}
